@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
 const Remaining = () => {
-  const { expenses } = useContext(AppContext);
-  let budget = 1000;
+  const { expenses, budget } = useContext(AppContext);
 
   const totalExpenses = expenses.reduce((total, item) => {
     return (total = total + item.cost);
@@ -16,7 +15,7 @@ const Remaining = () => {
   if (remaining < 0){
     alert("You have exceeded your budget!");  
   }
-  
+
   return (
     <div className={`alert ${alertType}`}>
       <span>Remaining: ${budget - totalExpenses}</span>
