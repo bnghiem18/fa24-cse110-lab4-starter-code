@@ -46,13 +46,15 @@ describe("Remove Expenses", () => {
 
         // Add a new expense
         await act(async () => {
-            fireEvent.change(screen.getByTestId("name-input"), { target: { value: "Test Expense" } });
+            fireEvent.change(screen.getByTestId("name-input"), { target: { value: "Test1" } });
             fireEvent.change(screen.getByTestId("cost-input"), { target: { value: 50 } });
             fireEvent.click(screen.getByTestId("save-expense"));
         });
 
         // Update component after adding expense
-        let updatedExpenses = mockSetExpenses.mock.calls[0][0]([]);
+        let updatedExpenses = typeof mockSetExpenses.mock.calls[0][0] === 'function'
+        ? mockSetExpenses.mock.calls[0][0](expenses)
+        : mockSetExpenses.mock.calls[0][0];
         rerender(
             <AppContext.Provider
                 value={{
@@ -70,25 +72,24 @@ describe("Remove Expenses", () => {
             expect.arrayContaining([
                 expect.objectContaining<Expense>({
                     id: expect.any(String),
-                    name: "Test Expense",
+                    name: "Test1",
                     cost: 50
                 }),
             ])
         );
         const id = updatedExpenses[0].id;
-        expect(screen.getByText("Test Expense")).toBeInTheDocument();
+        expect(screen.getByText("Test1")).toBeInTheDocument();
         expect(screen.getByText("$50")).toBeInTheDocument();
-        expect(screen.getByTestId(id)).toBeInTheDocument();
 
         // Remove the expense
-        await act(async () => {
-            fireEvent.click(screen.getByTestId(id));
-        });
+      
+        fireEvent.click(screen.getByTestId(`delete-${updatedExpenses[0].name}`));
+       
         updatedExpenses = mockSetExpenses.mock.calls[1][0]([]);
 
         // Verify expense has been removed from the list and DOM
         expect(updatedExpenses.length).toBe(0);
-        expect(screen.queryByText("Test Expense")).not.toBeInTheDocument();
+        expect(screen.queryByText("Test1")).not.toBeInTheDocument();
         expect(screen.queryByText("$50")).not.toBeInTheDocument();
     });
 
