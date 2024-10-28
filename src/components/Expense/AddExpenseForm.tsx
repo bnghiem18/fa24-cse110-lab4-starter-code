@@ -39,6 +39,7 @@ const AddExpenseForm = () => {
             className="form-control"
             id="name"
             value={name}
+            data-testid=  "name-input"
             onChange={(e) => setName(e.target.value)}
           ></input>
         </div>
@@ -49,12 +50,13 @@ const AddExpenseForm = () => {
             type="text"
             className="form-control"
             id="cost"
+            data-testid=  "cost-input"
             value={cost}
             onChange={(e) => setCost(e.target.value ? parseFloat(e.target.value) : "")}
           ></input>
         </div>
         <div className="col-sm">
-          <button type="submit" className="btn btn-primary mt-3">
+          <button type="submit" className="btn btn-primary mt-3" data-testid = "save-expense"> 
             Save
           </button>
         </div>
