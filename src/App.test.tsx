@@ -65,11 +65,20 @@ describe('Main Tests', () => {
 
    
     const remainingTextAdd = currentRemainingAdd.textContent; // "Remaining: $850"
+    if (remainingTextAdd !== null) {
+      const remainingNumber = parseFloat(remainingTextAdd.replace(/[^\d.-]/g, ''));
+      expect(remainingNumber).toBe(850);
+    } else {
+      throw new Error("remainingTextDelete is null");
+    }
     const spentTextAdd = currentSpentAdd.textContent;         // "Spent so far: $150" 
-    const remainingNumberAdd= parseFloat(remainingTextAdd.replace(/[^\d.-]/g, ''));
-    const spentNumberAdd = parseFloat(spentTextAdd.replace(/[^\d.-]/g, ''));
-    expect(remainingNumberAdd).toBe(850);
-    expect(spentNumberAdd).toBe(150);
+    if (spentTextAdd !== null) {
+      const spentNumber = parseFloat(spentTextAdd.replace(/[^\d.-]/g, ''));
+      expect(spentNumber).toBe(150);
+  } else {
+      throw new Error("spentText is null");
+  }
+
 
 
     fireEvent.click(screen.getByTestId('delete-Test3'));
@@ -89,12 +98,20 @@ describe('Main Tests', () => {
 
    
     const remainingTextDelete = currentRemainingDelete.textContent; // "Remaining: $1000"
-    const spentTextDelete = currentSpentDelete.textContent;         // "Spent so far: $0" 
-    const remainingNumberDelete = parseFloat(remainingTextDelete.replace(/[^\d.-]/g, ''));
-    const spentNumberDelete = parseFloat(spentTextDelete.replace(/[^\d.-]/g, ''));
-    expect(remainingNumberDelete).toBe(1000);
-    expect(spentNumberDelete).toBe(0);
-    
+    if (remainingTextDelete !== null) {
+      const remainingNumber = parseFloat(remainingTextDelete.replace(/[^\d.-]/g, ''));
+      expect(remainingNumber).toBe(1000);
+    } else {
+      throw new Error("remainingTextDelete is null");
+    }
+
+    const spentTextDelete = currentSpentDelete.textContent;
+    if (spentTextDelete !== null) {
+        const spentNumber = parseFloat(spentTextDelete.replace(/[^\d.-]/g, ''));
+        expect(spentNumber).toBe(0);
+    } else {
+        throw new Error("spentText is null");
+    }
 
   });
 
@@ -135,12 +152,21 @@ describe('Main Tests', () => {
 
    
     const remainingText = currentRemaining.textContent; // "Remaining: $850"
+    
+    if (remainingText !== null) {
+      const remainingNumber = parseFloat(remainingText.replace(/[^\d.-]/g, ''));
+      expect(remainingNumber).toBe(850);
+    } else {
+      throw new Error("remainingTextDelete is null");
+    }
+    
     const spentText = currentSpent.textContent;         // "Spent so far: $150" 
-    const remainingNumber = parseFloat(remainingText.replace(/[^\d.-]/g, ''));
-    const spentNumber = parseFloat(spentText.replace(/[^\d.-]/g, ''));
-    expect(remainingNumber).toBe(850);
-    expect(spentNumber).toBe(150);
-
+    if (spentText !== null) {
+      const spentNumber = parseFloat(spentText.replace(/[^\d.-]/g, ''));
+      expect(spentNumber).toBe(150);
+  } else {
+      throw new Error("spentText is null");
+  }
   });
   
 
