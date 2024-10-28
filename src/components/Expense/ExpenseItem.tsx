@@ -15,7 +15,7 @@ const ExpenseItem = (currentExpense: Expense) => {
 
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
-      <div   data-testid=  "name-input">{currentExpense.name}</div>
+      <div   data-testid=  "name-input"> {currentExpense.name}</div>
       <div>${currentExpense.cost}</div>
       <div>
         <button data-testid={`delete-${currentExpense.name}`} onClick={() => handleDeleteExpense(currentExpense)}>x</button>
