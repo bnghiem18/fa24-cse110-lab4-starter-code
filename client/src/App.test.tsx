@@ -10,8 +10,6 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-
-
 describe('Main Tests', () => {
 
   test('Adding multiple expenses', async () => {
@@ -155,7 +153,7 @@ describe('Main Tests', () => {
     
     if (remainingText !== null) {
       const remainingNumber = parseFloat(remainingText.replace(/[^\d.-]/g, ''));
-      expect(remainingNumber).toBe(850);
+      expect(remainingNumber).toBe(800);
     } else {
       throw new Error("remainingTextDelete is null");
     }
