@@ -40,10 +40,11 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.2",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.14",
     "@types/react": "^18.3.12",
+    "@types/testing-library__react": "^10.0.1",
     "@types/uuid": "^10.0.0",
     "jest": "^27.5.1"
   }
