@@ -20,6 +20,7 @@ export function createExpenseServer(req: Request, res: Response, expenses: Expen
 }
 
 export function deleteExpense(req: Request, res: Response, expenses: Expense[]) {
+    
     const { id, cost, description } = req.params;
 
     if(!id) {
@@ -32,9 +33,10 @@ export function deleteExpense(req: Request, res: Response, expenses: Expense[]) 
         return res.status(404).send({error: "Couldn't find expense"});
     }
     
-    const deletedExpense = expenses.splice(index, 1);
-
-    res.status(200).send(deleteExpense);
+    const deletedExpense = expenses[index]
+    expenses.splice(index, 1);
+    
+    res.status(200).send(deletedExpense);
 }
 
 export function getExpenses(req: Request, res: Response, expenses: Expense[]) {

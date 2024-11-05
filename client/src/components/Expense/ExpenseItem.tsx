@@ -12,7 +12,6 @@ const ExpenseItem = (currentExpense: Expense) => {
     // Exercise: Remove expense from expenses context array
     const updatedExpenses = expenses.filter(expense => expense.id !== currentExpense.id);
     deleteExpense(currentExpense.id);
-
     // Update the expenses state in context
     setExpenses(updatedExpenses);
   };
